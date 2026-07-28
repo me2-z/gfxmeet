@@ -1,4 +1,3 @@
-'v'
 'use client';
 
 import { useState } from 'react';
@@ -13,7 +12,6 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
   const [tier, setTier] = useState<'standard' | 'pro' | 'enterprise'>('pro');
   const [speed, setSpeed] = useState<'normal' | 'rush'>('normal');
 
-  // Calculation logic
   const basePrices = {
     thumbnail: { standard: 450, pro: 1200, enterprise: 3500 },
     esports: { standard: 2500, pro: 5500, enterprise: 12000 },
@@ -43,34 +41,34 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
   };
 
   return (
-    <section id="estimator" className="py-28 bg-[#0a0a0a] text-white">
+    <section id="estimator" className="py-28 bg-[#050505] text-[#F7F7F7]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-900 border border-neutral-800 rounded-full text-xs font-mono text-neutral-400 mb-4">
-              <Calculator className="w-3.5 h-3.5 text-white" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#111111] border border-white/[0.08] radius-card text-xs font-mono text-[#9A9A9A] mb-4">
+              <Calculator className="w-3.5 h-3.5 text-[#4B6FFF]" />
               <span>Interactive Scope Estimator</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-white max-w-2xl">
+            <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-[#F7F7F7] max-w-2xl">
               Calculate Your Studio Investment
             </h2>
           </div>
-          <p className="text-neutral-400 text-sm max-w-md font-light">
+          <p className="text-[#9A9A9A] text-sm max-w-md font-light">
             Configure your project parameters below to instantly estimate investment timelines and secure your priority slot.
           </p>
         </div>
 
         {/* Estimator Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 bg-[#0e0e0e] border border-neutral-800/80 p-8 md:p-12 shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 bg-[#111111] border border-white/[0.08] p-8 md:p-12 radius-dialog shadow-large">
           
           {/* Controls (Left 7 cols) */}
           <div className="lg:col-span-7 space-y-10">
             
             {/* 1. Select Service */}
             <div>
-              <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-4">
+              <label className="block text-xs font-mono uppercase tracking-widest text-[#9A9A9A] mb-4">
                 01. Select Studio Discipline
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -83,10 +81,10 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
                   <button
                     key={item.id}
                     onClick={() => setServiceType(item.id as any)}
-                    className={`p-4 text-left font-mono text-xs border transition-all cursor-pointer flex items-center justify-between ${
+                    className={`p-4 text-left font-mono text-xs border radius-button transition-all cursor-pointer flex items-center justify-between ${
                       serviceType === item.id
-                        ? 'bg-white text-black font-medium border-white'
-                        : 'bg-neutral-900 text-neutral-300 border-neutral-800 hover:border-neutral-700'
+                        ? 'bg-[#4B6FFF] text-white font-medium border-[#4B6FFF] shadow-small'
+                        : 'bg-[#171717] text-[#9A9A9A] border-white/[0.08] hover:border-white/20 hover:text-[#F7F7F7]'
                     }`}
                   >
                     <span>{item.label}</span>
@@ -98,7 +96,7 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
 
             {/* 2. Select Tier */}
             <div>
-              <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-4">
+              <label className="block text-xs font-mono uppercase tracking-widest text-[#9A9A9A] mb-4">
                 02. Select Scope Tier
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -110,10 +108,10 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
                   <button
                     key={item.id}
                     onClick={() => setTier(item.id as any)}
-                    className={`p-4 text-left font-mono text-xs border transition-all cursor-pointer flex flex-col justify-between h-24 ${
+                    className={`p-4 text-left font-mono text-xs border radius-button transition-all cursor-pointer flex flex-col justify-between h-24 ${
                       tier === item.id
-                        ? 'bg-white text-black font-medium border-white'
-                        : 'bg-neutral-900 text-neutral-300 border-neutral-800 hover:border-neutral-700'
+                        ? 'bg-[#4B6FFF] text-white font-medium border-[#4B6FFF] shadow-small'
+                        : 'bg-[#171717] text-[#9A9A9A] border-white/[0.08] hover:border-white/20 hover:text-[#F7F7F7]'
                     }`}
                   >
                     <span>{item.label}</span>
@@ -127,7 +125,7 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
 
             {/* 3. Turnaround Speed */}
             <div>
-              <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-4">
+              <label className="block text-xs font-mono uppercase tracking-widest text-[#9A9A9A] mb-4">
                 03. Turnaround Priority
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -138,10 +136,10 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
                   <button
                     key={item.id}
                     onClick={() => setSpeed(item.id as any)}
-                    className={`p-4 text-left font-mono text-xs border transition-all cursor-pointer flex items-center justify-between ${
+                    className={`p-4 text-left font-mono text-xs border radius-button transition-all cursor-pointer flex items-center justify-between ${
                       speed === item.id
-                        ? 'bg-white text-black font-medium border-white'
-                        : 'bg-neutral-900 text-neutral-300 border-neutral-800 hover:border-neutral-700'
+                        ? 'bg-[#4B6FFF] text-white font-medium border-[#4B6FFF] shadow-small'
+                        : 'bg-[#171717] text-[#9A9A9A] border-white/[0.08] hover:border-white/20 hover:text-[#F7F7F7]'
                     }`}
                   >
                     <span>{item.label}</span>
@@ -154,49 +152,49 @@ export default function ProjectCalculator({ onOpenContactWithDetails }: ProjectC
           </div>
 
           {/* Estimate Summary Box (Right 5 cols) */}
-          <div className="lg:col-span-5 bg-neutral-950 border border-neutral-800 p-8 flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-[#050505] border border-white/[0.08] radius-card p-8 flex flex-col justify-between shadow-medium">
             <div className="space-y-6">
-              <div className="flex items-center justify-between border-b border-neutral-900 pb-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400">
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#9A9A9A]">
                   Estimated Investment
                 </span>
-                <span className="text-xs font-mono text-emerald-400">Verified Quote</span>
+                <span className="text-xs font-mono text-[#28C76F]">Verified Quote</span>
               </div>
 
               <div>
-                <div className="text-4xl sm:text-5xl font-light text-white font-mono tracking-tight mb-2">
+                <div className="text-4xl sm:text-5xl font-light text-[#F7F7F7] font-mono tracking-tight mb-2">
                   ${finalAmount.toLocaleString()}
                 </div>
-                <p className="text-xs font-mono text-neutral-400">
+                <p className="text-xs font-mono text-[#9A9A9A]">
                   USD • All source files & commercial rights included
                 </p>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-neutral-900 text-xs font-mono text-neutral-300">
+              <div className="space-y-3 pt-4 border-t border-white/[0.08] text-xs font-mono text-[#9A9A9A]">
                 <div className="flex justify-between">
-                  <span className="text-neutral-500">Service:</span>
-                  <span className="text-right">{serviceNames[serviceType]}</span>
+                  <span className="text-[#6B6B6B]">Service:</span>
+                  <span className="text-right text-[#F7F7F7]">{serviceNames[serviceType]}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-500">Tier:</span>
-                  <span className="text-right">{tierNames[tier]}</span>
+                  <span className="text-[#6B6B6B]">Tier:</span>
+                  <span className="text-right text-[#F7F7F7]">{tierNames[tier]}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-500">Timeline:</span>
-                  <span className="text-right">{speed === 'rush' ? 'Priority 48hr Sprint' : 'Standard 1-2 Weeks'}</span>
+                  <span className="text-[#6B6B6B]">Timeline:</span>
+                  <span className="text-right text-[#F7F7F7]">{speed === 'rush' ? 'Priority 48hr Sprint' : 'Standard 1-2 Weeks'}</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-8 mt-8 border-t border-neutral-900">
+            <div className="pt-8 mt-8 border-t border-white/[0.08]">
               <button
                 onClick={handleInquire}
-                className="w-full py-4 bg-white text-black text-xs font-medium tracking-widest uppercase flex items-center justify-center gap-2 hover:bg-neutral-200 transition-colors cursor-pointer"
+                className="w-full py-4 bg-[#4B6FFF] text-white text-xs font-medium tracking-widest uppercase radius-button flex items-center justify-center gap-2 hover:bg-[#3b5ae6] transition-colors cursor-pointer shadow-small"
               >
                 <span>Secure Slot With This Scope</span>
                 <ArrowUpRight className="w-4 h-4" />
               </button>
-              <p className="text-[11px] text-center text-neutral-500 font-mono mt-3">
+              <p className="text-[11px] text-center text-[#6B6B6B] font-mono mt-3">
                 No upfront payment required to submit inquiry.
               </p>
             </div>

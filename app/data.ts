@@ -4,8 +4,11 @@ export interface Project {
   client: string;
   category: 'YouTube Thumbnails' | 'Gaming & Esports' | 'Brand Packaging' | 'Motion & Posters';
   image: string;
+  rawImage: string;
   views: string;
   ctr: string;
+  creationTime: string;
+  softwareUsed: string[];
   description: string;
   challenge: string;
   strategy: string;
@@ -30,7 +33,6 @@ export interface Testimonial {
   role: string;
   channel: string;
   subscribers?: string;
-  avatar?: string;
 }
 
 export const STUDIO_STATS = [
@@ -47,8 +49,11 @@ export const PROJECTS: Project[] = [
     client: 'Krono Gaming (4.2M Subs)',
     category: 'YouTube Thumbnails',
     image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop',
+    rawImage: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop&sat=-100&blur=2',
     views: '18.4M Views',
     ctr: '16.8% CTR',
+    creationTime: '18 Hours',
+    softwareUsed: ['Adobe Photoshop', 'Cinema 4D', 'DaVinci Resolve'],
     description: 'Complete visual overhaul and thumbnail strategy for a record-breaking 3-part survival documentary.',
     challenge: 'The channel was experiencing plateauing CTRs on long-form narrative gaming documentaries despite high production quality.',
     strategy: 'Implemented psychological focal anchoring, high-contrast silhouette separation, and curiosity-driven facial expressions with zero visual clutter.',
@@ -61,8 +66,11 @@ export const PROJECTS: Project[] = [
     client: 'Velocity Global',
     category: 'Gaming & Esports',
     image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop',
+    rawImage: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop&sat=-80',
     views: '45M+ Impressions',
     ctr: '24% Engagement',
+    creationTime: '14 Days',
+    softwareUsed: ['Blender', 'Adobe Illustrator', 'After Effects', 'Photoshop'],
     description: 'Full identity suite, broadcast packaging, and jersey design for a tier-1 international esports tournament.',
     challenge: 'Needed a menacing yet premium architectural aesthetic that resonated with both Gen-Z gamers and corporate sponsors like Intel and Monster.',
     strategy: 'Crafted custom geometric wordmarks, matte-metallic texture palettes, and modular HUD overlays for live broadcast integration.',
@@ -75,8 +83,11 @@ export const PROJECTS: Project[] = [
     client: 'Aethel Essays (1.8M Subs)',
     category: 'YouTube Thumbnails',
     image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop',
+    rawImage: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop&sat=-90',
     views: '9.2M Views',
     ctr: '14.5% CTR',
+    creationTime: '12 Hours',
+    softwareUsed: ['Adobe Photoshop', 'Lightroom', 'Blender'],
     description: 'Atmospheric, cinematic thumbnail art and title sequencing for deep-dive gaming retrospectives.',
     challenge: 'Balancing intellectual depth with immediate visual stopping power in a crowded essay niche.',
     strategy: 'Used dramatic chiaroscuro lighting, emotional character close-ups, and minimalist typography that hints at narrative intrigue.',
@@ -89,8 +100,11 @@ export const PROJECTS: Project[] = [
     client: 'Respawn Entertainment Partner',
     category: 'Motion & Posters',
     image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1200&auto=format&fit=crop',
+    rawImage: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1200&auto=format&fit=crop&sat=-70',
     views: '12M+ Reach',
     ctr: '19.2% CTR',
+    creationTime: '5 Days',
+    softwareUsed: ['Cinema 4D', 'After Effects', 'Photoshop'],
     description: 'High-octane promotional posters and motion graphics for premier competitive gaming showdowns.',
     challenge: 'Capturing the raw adrenaline of competitive battle royale without sacrificing legibility across mobile screens.',
     strategy: 'Employed dynamic diagonal framing, laser-focused character contrast, and explosive particle choreography.',
@@ -103,8 +117,11 @@ export const PROJECTS: Project[] = [
     client: 'Quantum Inc.',
     category: 'Brand Packaging',
     image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
+    rawImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop&sat=-90',
     views: 'B2B Flagship',
     ctr: '3.8x Demo Conversions',
+    creationTime: '21 Days',
+    softwareUsed: ['Figma', 'Adobe Illustrator', 'Blender', 'Principle'],
     description: 'Complete brand identity, design system, and marketing asset library for an AI creator tooling platform.',
     challenge: 'Standing out in a hyper-saturated AI software landscape with authentic creative authority.',
     strategy: 'Rejected generic AI blue gradients in favor of editorial monochrome obsidian architecture with razor-sharp typography.',
@@ -117,8 +134,11 @@ export const PROJECTS: Project[] = [
     client: 'Zane Craft (8.5M Subs)',
     category: 'YouTube Thumbnails',
     image: 'https://images.unsplash.com/photo-1627856013091-fed6e4e3049e?q=80&w=1200&auto=format&fit=crop',
+    rawImage: 'https://images.unsplash.com/photo-1627856013091-fed6e4e3049e?q=80&w=1200&auto=format&fit=crop&sat=-80',
     views: '24.1M Views',
     ctr: '18.9% CTR',
+    creationTime: '16 Hours',
+    softwareUsed: ['Adobe Photoshop', 'Blender'],
     description: 'Iconic thumbnail engineering for one of the most-watched Minecraft survival series of the decade.',
     challenge: 'Creating universal visual appeal across language barriers and age demographics.',
     strategy: 'Focused on high-stakes narrative tension, exaggerated yet clean character staging, and bold color isolation.',
