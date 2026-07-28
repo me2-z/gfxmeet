@@ -12,10 +12,13 @@ import Testimonials from './components/Testimonials';
 import AboutStudio from './components/AboutStudio';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
+import Preloader from './components/Preloader';
+import CustomCursor from './components/CustomCursor';
 
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
   const [initialContactMessage, setInitialContactMessage] = useState('');
+  const [loadingComplete, setLoadingComplete] = useState(false);
 
   const handleOpenContact = () => {
     setInitialContactMessage('');
@@ -28,7 +31,13 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-white selection:text-black">
+    <main className="min-h-screen bg-[#050505] text-[#F7F7F7] selection:bg-[#4B6FFF] selection:text-white">
+      {/* Cinematic Preloader */}
+      <Preloader onComplete={() => setLoadingComplete(true)} />
+
+      {/* Custom Physics Cursor */}
+      <CustomCursor />
+
       <Navbar onOpenContact={handleOpenContact} />
       <Hero onOpenContact={handleOpenContact} />
       <AttentionSimulator />
