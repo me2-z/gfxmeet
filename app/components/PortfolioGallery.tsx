@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { PROJECTS, Project } from '../data';
-import { ArrowUpRight, Sparkles, TrendingUp, Eye, Clock, Cpu, Share2, Layers, Search, SlidersHorizontal, X } from 'lucide-react';
+import { ArrowUpRight, Sparkles, TrendingUp, Eye, Clock, Cpu, Share2, Layers, Search, SlidersHorizontal, X, Target, Users, Compass } from 'lucide-react';
 
 interface CaseStudyModalProps {
   project: Project | null;
@@ -10,10 +10,10 @@ interface CaseStudyModalProps {
   onOpenContact: () => void;
 }
 
-function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps) {
+export function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'process' | 'photoshop'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'strategy' | 'process' | 'photoshop'>('overview');
 
   if (!project) return null;
 
@@ -59,8 +59,8 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
           </div>
         </div>
 
-        {/* Modal Navigation Tabs */}
-        <div className="flex px-6 sm:px-8 bg-[#111111] border-b border-white/[0.08] gap-6 font-mono text-xs">
+        {/* Modal Navigation Tabs (Part 5 Documentary Style) */}
+        <div className="flex flex-wrap px-6 sm:px-8 bg-[#111111] border-b border-white/[0.08] gap-6 font-mono text-xs">
           <button
             onClick={() => setActiveTab('overview')}
             className={`py-4 border-b-2 transition-colors cursor-pointer ${
@@ -69,7 +69,17 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
                 : 'border-transparent text-[#9A9A9A] hover:text-[#F7F7F7]'
             }`}
           >
-            Overview & Before/After
+            01. Overview & Before/After
+          </button>
+          <button
+            onClick={() => setActiveTab('strategy')}
+            className={`py-4 border-b-2 transition-colors cursor-pointer ${
+              activeTab === 'strategy'
+                ? 'border-[#4B6FFF] text-[#F7F7F7] font-medium'
+                : 'border-transparent text-[#9A9A9A] hover:text-[#F7F7F7]'
+            }`}
+          >
+            02. Brief, Audience & Psychology
           </button>
           <button
             onClick={() => setActiveTab('process')}
@@ -79,7 +89,7 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
                 : 'border-transparent text-[#9A9A9A] hover:text-[#F7F7F7]'
             }`}
           >
-            Creative Process Timeline
+            03. Creative Process Timeline
           </button>
           <button
             onClick={() => setActiveTab('photoshop')}
@@ -89,7 +99,7 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
                 : 'border-transparent text-[#9A9A9A] hover:text-[#F7F7F7]'
             }`}
           >
-            Photoshop Layer Breakdown
+            04. Photoshop Layer Stack
           </button>
         </div>
 
@@ -98,11 +108,16 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
           
           {activeTab === 'overview' && (
             <>
-              {/* Title & Stats */}
-              <div>
-                <h2 className="text-2xl sm:text-4xl font-light tracking-tight text-[#F7F7F7] mb-4">
+              {/* Project Hero / Objective */}
+              <div className="space-y-4">
+                <h2 className="text-2xl sm:text-4xl font-light tracking-tight text-[#F7F7F7]">
                   {project.title}
                 </h2>
+                {project.objective && (
+                  <p className="text-base text-[#4B6FFF] font-mono leading-relaxed bg-[#111111] p-4 border border-white/[0.08] radius-card">
+                    Objective: &ldquo;{project.objective}&rdquo;
+                  </p>
+                )}
                 <div className="flex flex-wrap gap-4 font-mono text-xs">
                   <div className="px-4 py-2 bg-[#111111] border border-white/[0.08] text-[#28C76F] flex items-center gap-2 radius-card">
                     <TrendingUp className="w-4 h-4" />
@@ -114,7 +129,7 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
                   </div>
                   <div className="px-4 py-2 bg-[#111111] border border-white/[0.08] text-[#9A9A9A] flex items-center gap-2 radius-card">
                     <Clock className="w-4 h-4" />
-                    <span>Time: {project.creationTime}</span>
+                    <span>Timeline: {project.creationTime}</span>
                   </div>
                 </div>
               </div>
@@ -178,7 +193,7 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="p-5 bg-[#111111] border border-white/[0.08] radius-card">
                   <div className="text-xs font-mono uppercase tracking-widest text-[#9A9A9A] mb-3">
-                    Color Palette
+                    Color Palette & Temperature
                   </div>
                   <div className="flex items-center gap-3">
                     {project.colorPalette?.map((color, idx) => (
@@ -192,7 +207,7 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
 
                 <div className="p-5 bg-[#111111] border border-white/[0.08] radius-card">
                   <div className="text-xs font-mono uppercase tracking-widest text-[#9A9A9A] mb-3">
-                    Typography & Fonts
+                    Typography Hierarchy
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {project.fontsUsed?.map((font, idx) => (
@@ -208,7 +223,7 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
                 <div className="p-6 bg-[#111111] border border-white/[0.08] radius-card">
                   <h3 className="text-xs uppercase font-mono tracking-widest text-[#9A9A9A] mb-3">
-                    The Challenge
+                    The Problem
                   </h3>
                   <p className="text-sm text-[#9A9A9A] font-light leading-relaxed">
                     {project.challenge}
@@ -217,7 +232,7 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
 
                 <div className="p-6 bg-[#111111] border border-white/[0.08] radius-card">
                   <h3 className="text-xs uppercase font-mono tracking-widest text-[#9A9A9A] mb-3">
-                    Design Strategy
+                    Visual Strategy
                   </h3>
                   <p className="text-sm text-[#9A9A9A] font-light leading-relaxed">
                     {project.strategy}
@@ -226,14 +241,76 @@ function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps
 
                 <div className="p-6 bg-[#111111] border border-white/[0.08] radius-card">
                   <h3 className="text-xs uppercase font-mono tracking-widest text-[#28C76F] mb-3">
-                    The Result
+                    Measurable Result
                   </h3>
                   <p className="text-sm text-[#F7F7F7] font-light leading-relaxed">
                     {project.result}
                   </p>
                 </div>
               </div>
+
+              {/* Lessons Learned */}
+              {project.lessonsLearned && (
+                <div className="p-6 bg-[#111111] border border-white/[0.08] radius-card font-mono text-xs space-y-2">
+                  <div className="text-[#4B6FFF] uppercase tracking-widest">Key Takeaway & Lessons Learned:</div>
+                  <div className="text-[#9A9A9A] font-light text-sm leading-relaxed">{project.lessonsLearned}</div>
+                </div>
+              )}
             </>
+          )}
+
+          {activeTab === 'strategy' && (
+            <div className="space-y-8 py-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 bg-[#111111] border border-white/[0.08] radius-card space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#4B6FFF]">
+                    <Target className="w-4 h-4" />
+                    <span>Client Brief & Goals</span>
+                  </div>
+                  <div className="space-y-3 text-sm text-[#9A9A9A] font-light">
+                    <div><strong className="text-[#F7F7F7]">Core Goal:</strong> {project.clientBrief?.goal}</div>
+                    <div><strong className="text-[#F7F7F7]">Target Audience:</strong> {project.clientBrief?.audience}</div>
+                    <div><strong className="text-[#F7F7F7]">Deadline:</strong> {project.clientBrief?.deadline}</div>
+                    <div><strong className="text-[#F7F7F7]">Success Metrics:</strong> {project.clientBrief?.metrics}</div>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-[#111111] border border-white/[0.08] radius-card space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#28C76F]">
+                    <Users className="w-4 h-4" />
+                    <span>Audience Research & Psychology</span>
+                  </div>
+                  <div className="space-y-3 text-sm text-[#9A9A9A] font-light">
+                    <div><strong className="text-[#F7F7F7]">Demographics:</strong> {project.audienceResearch?.demographics}</div>
+                    <div><strong className="text-[#F7F7F7]">Visual Psychology:</strong> {project.audienceResearch?.psychology}</div>
+                    <div><strong className="text-[#F7F7F7]">Viewing Device:</strong> {project.audienceResearch?.viewingDevice}</div>
+                  </div>
+                </div>
+              </div>
+
+              {project.visualStrategy && (
+                <div className="p-6 bg-[#111111] border border-white/[0.08] radius-card space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#4B6FFF]">
+                    <Compass className="w-4 h-4" />
+                    <span>Visual Strategy & Composition</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+                    <div className="p-4 bg-[#171717] border border-white/[0.08] radius-button">
+                      <span className="text-[#6B6B6B] block mb-1">FOCAL POINT</span>
+                      <span className="text-[#F7F7F7]">{project.visualStrategy.focalPoint}</span>
+                    </div>
+                    <div className="p-4 bg-[#171717] border border-white/[0.08] radius-button">
+                      <span className="text-[#6B6B6B] block mb-1">COLOR BALANCE</span>
+                      <span className="text-[#F7F7F7]">{project.visualStrategy.colorBalance}</span>
+                    </div>
+                    <div className="p-4 bg-[#171717] border border-white/[0.08] radius-button">
+                      <span className="text-[#6B6B6B] block mb-1">TYPOGRAPHY HIERARCHY</span>
+                      <span className="text-[#F7F7F7]">{project.visualStrategy.typographyHierarchy}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           )}
 
           {activeTab === 'process' && (
@@ -431,7 +508,7 @@ export default function PortfolioGallery({ onOpenContact }: { onOpenContact: () 
                 {/* Hover Action Overlay */}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <div className="px-5 py-2.5 bg-[#4B6FFF] text-white text-xs font-medium tracking-widest uppercase radius-button flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform shadow-small">
-                    <span>Inspect Case Study</span>
+                    <span>Inspect Documentary Case Study</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>
@@ -476,7 +553,7 @@ export default function PortfolioGallery({ onOpenContact }: { onOpenContact: () 
 
       </div>
 
-      {/* Case Study Modal with Before/After & Process & Photoshop Breakdown */}
+      {/* Documentary Case Study Modal */}
       <CaseStudyModal
         project={activeProject}
         onClose={() => setActiveProject(null)}
