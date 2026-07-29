@@ -14,14 +14,16 @@ import AboutStudio from './components/AboutStudio';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
 import ClientPortalModal from './components/ClientPortalModal';
+import AdminPanelModal from './components/AdminPanelModal';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
 import { SmoothScroll } from './components/SmoothScroll';
-import { Lock } from 'lucide-react';
+import { Lock, Shield } from 'lucide-react';
 
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
   const [initialContactMessage, setInitialContactMessage] = useState('');
   const [loadingComplete, setLoadingComplete] = useState(false);
 
@@ -44,14 +46,24 @@ export default function Home() {
         {/* Custom Physics Cursor */}
         <CustomCursor />
 
-        {/* Floating Client Portal trigger badge */}
-        <button
-          onClick={() => setPortalOpen(true)}
-          className="fixed bottom-6 right-6 z-40 px-4 py-2.5 bg-[#111111] border border-white/[0.08] hover:border-white/30 radius-card shadow-large flex items-center gap-2.5 text-xs font-mono text-[#F7F7F7] transition-all cursor-pointer group"
-        >
-          <Lock className="w-3.5 h-3.5 text-[#4B6FFF] group-hover:scale-110 transition-transform" />
-          <span>Client Portal</span>
-        </button>
+        {/* Floating Access Triggers (Client Portal & Studio OS Admin) */}
+        <div className="fixed bottom-6 right-6 z-45 flex items-center gap-3">
+          <button
+            onClick={() => setAdminOpen(true)}
+            className="px-4 py-2.5 bg-[#111111] border border-white/[0.08] hover:border-white/35 radius-card shadow-large flex items-center gap-2 text-xs font-mono text-[#F7F7F7] transition-all cursor-pointer group"
+          >
+            <Shield className="w-3.5 h-3.5 text-[#28C76F] group-hover:scale-110 transition-transform" />
+            <span>Studio OS</span>
+          </button>
+
+          <button
+            onClick={() => setPortalOpen(true)}
+            className="px-4 py-2.5 bg-[#111111] border border-white/[0.08] hover:border-white/35 radius-card shadow-large flex items-center gap-2.5 text-xs font-mono text-[#F7F7F7] transition-all cursor-pointer group"
+          >
+            <Lock className="w-3.5 h-3.5 text-[#4B6FFF] group-hover:scale-110 transition-transform" />
+            <span>Client Portal</span>
+          </button>
+        </div>
 
         <Navbar onOpenContact={handleOpenContact} />
         <Hero onOpenContact={handleOpenContact} />
@@ -73,6 +85,11 @@ export default function Home() {
         <ClientPortalModal
           isOpen={portalOpen}
           onClose={() => setPortalOpen(false)}
+        />
+
+        <AdminPanelModal
+          isOpen={adminOpen}
+          onClose={() => setAdminOpen(false)}
         />
       </main>
     </SmoothScroll>
