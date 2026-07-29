@@ -9,6 +9,7 @@ import PortfolioGallery from './components/PortfolioGallery';
 import Expertise from './components/Expertise';
 import ProjectCalculator from './components/ProjectCalculator';
 import Testimonials from './components/Testimonials';
+import StudioSection from './components/StudioSection';
 import AboutStudio from './components/AboutStudio';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
@@ -45,6 +46,7 @@ export default function Home() {
         <AttentionSimulator />
         <PortfolioGallery onOpenContact={handleOpenContact} />
         <Expertise onOpenContact={handleOpenContact} />
+        <StudioSection onOpenContact={handleOpenContact} onOpenContactWithDetails={handleOpenContactWithDetails} />
         <ProjectCalculator onOpenContactWithDetails={handleOpenContactWithDetails} />
         <Testimonials />
         <AboutStudio onOpenContact={handleOpenContact} />
