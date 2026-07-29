@@ -13,12 +13,15 @@ import StudioSection from './components/StudioSection';
 import AboutStudio from './components/AboutStudio';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
+import ClientPortalModal from './components/ClientPortalModal';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
 import { SmoothScroll } from './components/SmoothScroll';
+import { Lock } from 'lucide-react';
 
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
+  const [portalOpen, setPortalOpen] = useState(false);
   const [initialContactMessage, setInitialContactMessage] = useState('');
   const [loadingComplete, setLoadingComplete] = useState(false);
 
@@ -41,6 +44,15 @@ export default function Home() {
         {/* Custom Physics Cursor */}
         <CustomCursor />
 
+        {/* Floating Client Portal trigger badge */}
+        <button
+          onClick={() => setPortalOpen(true)}
+          className="fixed bottom-6 right-6 z-40 px-4 py-2.5 bg-[#111111] border border-white/[0.08] hover:border-white/30 radius-card shadow-large flex items-center gap-2.5 text-xs font-mono text-[#F7F7F7] transition-all cursor-pointer group"
+        >
+          <Lock className="w-3.5 h-3.5 text-[#4B6FFF] group-hover:scale-110 transition-transform" />
+          <span>Client Portal</span>
+        </button>
+
         <Navbar onOpenContact={handleOpenContact} />
         <Hero onOpenContact={handleOpenContact} />
         <AttentionSimulator />
@@ -56,6 +68,11 @@ export default function Home() {
           isOpen={contactOpen}
           onClose={() => setContactOpen(false)}
           initialMessage={initialContactMessage}
+        />
+
+        <ClientPortalModal
+          isOpen={portalOpen}
+          onClose={() => setPortalOpen(false)}
         />
       </main>
     </SmoothScroll>
