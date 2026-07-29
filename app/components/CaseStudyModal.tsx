@@ -1,17 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { X, ArrowUpRight, TrendingUp, Eye, Clock, Cpu, Download, Share2, ChevronLeft, ChevronRight, Layers } from 'lucide-react';
+import { X, ArrowUpRight, TrendingUp, Eye, Clock, Cpu, Share2, Layers } from 'lucide-react';
 import { Project } from '../data';
 
 interface CaseStudyModalProps {
   project: Project | null;
   onClose: () => void;
   onOpenContact: () => void;
-  onSelectProject?: (project: Project) => void;
 }
 
-export default function CaseStudyModal({ project, onClose, onOpenContact, onSelectProject }: CaseStudyModalProps) {
+export default function CaseStudyModal({ project, onClose, onOpenContact }: CaseStudyModalProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'process' | 'photoshop'>('overview');
@@ -133,6 +132,12 @@ export default function CaseStudyModal({ project, onClose, onOpenContact, onSele
                   onMouseDown={() => setIsDragging(true)}
                   onMouseUp={() => setIsDragging(false)}
                   onMouseLeave={() => setIsDragging(false)}
+                  onTouchMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const touch = e.touches[0];
+                    const x = Math.max(0, Math.min(touch.clientX - rect.left, rect.width));
+                    setSliderPosition((x / rect.width) * 100);
+                  }}
                 >
                   <img
                     src={project.image}
